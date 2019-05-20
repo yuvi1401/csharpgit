@@ -1,4 +1,5 @@
 ﻿using System;
+// class Inheritance 
 
 public class Employee
 {
@@ -14,6 +15,7 @@ public class Employee
 public class FullTimeEmployee : Employee
 {
     public float YearlySalary;
+    
 }
 
 public class PartTimeEmployee : Employee
@@ -21,10 +23,43 @@ public class PartTimeEmployee : Employee
     public float HourlySalary;
 }
 
+// polymorphism
+
+    public class CompanyEmployee
+{
+    public string EmployeeFirstName = "FN";
+    public string EmployeeLastName = "LN";
+
+    public virtual void PrintEmployeeName()
+    {
+        Console.WriteLine(EmployeeFirstName + " " + EmployeeLastName);
+    }
+}
+
+public class CompanyFullTimeEmployee : CompanyEmployee
+{
+    public override void PrintEmployeeName()
+    {
+        Console.WriteLine(EmployeeFirstName + " " + EmployeeLastName + " - FTime");
+    }
+
+}
+
+public class CompanyPartTimeEmployee : CompanyEmployee
+{
+    public override void PrintEmployeeName()
+    {
+        Console.WriteLine(EmployeeFirstName + " " + EmployeeLastName + " - PTime");
+    }
+}
+
+
+
 public class Program
 {
     public static void Main()
     {
+        //class Inheritance
         FullTimeEmployee FTE = new FullTimeEmployee();
         FTE.FirstName = "Yuvi";
         FTE.LastName = "cad";
@@ -35,5 +70,19 @@ public class Program
         PTE.LastName = "Cloud";
         PTE.HourlySalary = 300;
         PTE.PrintFullName();
+
+        //polymorphism
+
+        CompanyEmployee[] employee = new CompanyEmployee[3];
+
+        employee[0] = new CompanyEmployee();
+
+        employee[1] = new CompanyFullTimeEmployee();
+        employee[2] = new CompanyPartTimeEmployee();
+
+        foreach (CompanyEmployee e in employee)
+        {
+            e.PrintEmployeeName();
+        }
     }
 }
